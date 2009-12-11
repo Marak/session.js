@@ -1,0 +1,2 @@
+add support for serializing sessions to disk
+consider adding a session manager object, which would support multiple session managers, have a constructor that could take options (like the file to serialize to, etc), and support methods specific to the manager, like adding a listener for sessions that are destroyed. (idea from Micheil on IRC)
