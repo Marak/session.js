@@ -1,2 +1,56 @@
-add support for serializing sessions to disk
-consider adding a session manager object, which would support multiple session managers, have a constructor that could take options (like the file to serialize to, etc), and support methods specific to the manager, like adding a listener for sessions that are destroyed. (idea from Micheil on IRC)
+The only exported function is sessions.lookupOrCreate(request,options).
+
+The |request| argument must be an HTTP request object.
+
+## Options ##
+
+The |options| argument is optional, and if present may have any of the following properties:
+
+- domain
+
+  If present, the cookie (and hence the session) will apply to the given domain, including any subdomains.
+  For example, on a request from foo.example.org, if the domain is set to '.example.org', then this session will persist across any subdomain of example.org.
+  By default, the domain is not set, and the session will only be visible to other requests that exactly match the domain.
+
+- path
+
+  If set, the session will be restricted to URLs underneath the given path.
+  By default the path is "/", which means that the same sessions will be shared across the entire domain.
+
+For more details on path and domain, see http://en.wikipedia.org/wiki/HTTP_cookie or RFC 2109.
+
+- sessionID
+
+  If you want to specify your own session ID, you can do that here.
+  Session IDs will be stored in a cookie and used to identify this particular session on subsequent requests.
+  They should be unique, and if the session contains sensitive data, they should be hard to guess (cf session hijacking).
+  By default, a random string is generated using 64 bits of entropy from Math.random().
+
+- lifetime
+
+  If you wish to create a persistent session (one that will last after the user closes the window and visits the site again) you must specify a lifetime as a number of seconds.
+  Common values are 86400 for one day, and 604800 for one week.
+  The lifetime controls both when the browser's cookie will expire, and when the session object will be freed by the sessions module.
+  By default, the browser cookie will expire when the window is closed, and the session object will be freed 24 hours after the last request is seen.
+
+## Session Objects ##
+
+sessions.lookupOrCreate returns a session object.
+
+Session objects have the following properties:
+
+- path
+- domain
+- lifetime
+
+  These correspond to the options of the same name, and can be changed after the session is created if desired.
+
+- data
+
+  The data property of a session object is the object, initially empty, on which you can store any session data.
+
+- getSetCookieHeaderValue()
+
+  This method returns the value to send in the Set-Cookie header which you should send with every request that goes back to the browser, e.g.
+  resp.sendHeader(200,{"Content-Type":...
+                      ,"Set-Cookie":session.getSetCookieHeaderValue()})
