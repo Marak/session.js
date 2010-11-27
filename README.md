@@ -23,8 +23,10 @@
       // let's create a basic http server!
       http.createServer(function (request, response) {
 
-        // before we process any part of the request, let's give it a session!
+        // before we process any part of the request, let's give use the session middle-ware!
         session(request, response, function(request, response){
+
+          // now we can access request.session
 
           // after the session middleware has executed, let's finish processing the request
           response.writeHead(200, {'Content-Type': 'text/plain'});
@@ -42,10 +44,12 @@
 #### Magic Monkey Punched Sessions (automatically patches httpServer)
 
     var http = require('http'),
-        session = require('./lib/core').magicSession();
+        session = require('./lib/core').magicSession(); // special magic, now all requests have sessions!
 
     // let's create a basic http server!
     http.createServer(function (request, response) {
+
+      // now we can access request.session
 
       // after the session middleware has executed, let's finish processing the request
       response.writeHead(200, {'Content-Type': 'text/plain'});
