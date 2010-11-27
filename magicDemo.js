@@ -1,31 +1,10 @@
 var http = require('http'),
-    session = require('./lib/core').session, 
+    session = require('./lib/core').magicSession(), 
     eyes = require('eyes');
 
 
 
-// MOVE THIS MONKEY PATCH TO CORE.JS
 
-http.createServer = function (requestListener) {
-
-  // Create a new instance of a node HttpServer
-  eyes.inspect(requestListener);
-  var orig = new http.Server(function(request, response){
-
-    session(request, response, function(request, response){
-      requestListener(request, response);
-    });
-  });
-
-  // Monkey punch the http server
-  var server = Object.create(orig);
-  
-  server.listen = function (port) { 
-    orig.listen(Number(port)); 
-  };
-
-  return server;
-};
 
 
 // let's create a basic http server!
