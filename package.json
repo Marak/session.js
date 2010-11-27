@@ -1,0 +1,16 @@
+{
+  "name": "sesh",
+  "description": "super simple session middleware for node.js, even has optional 'magic' sessions which monkey patch the httpServer with one line!",
+  "version": "0.1.0",
+  "author": "Marak Squires <marak.squires@gmail.com>",
+  "repository": {
+      "type": "git",
+      "url": "http://github.com/marak/session.js.git" 
+  },
+  "keywords": ["sessions", "cookies", "middleware", "session"],
+  "dependencies": {
+    "response": ">= 0.1.0"
+  },
+  "main": "./lib/core",
+  "engines": { "node": ">= 0.2.0" }
+}
