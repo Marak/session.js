@@ -61,7 +61,7 @@
     /* server started */  
     console.log('> hello world running on port 8080');
 
-#### Basic User Authentication
+#### Creating a super simple login / logout feature
 
 One of the best things about having a persistent session object per user, is having the ability to create user logins. The actual way you want to implement authentication is up to, but here is a basic pattern to follow. Please, remember this method of authentication is just an example:
     
