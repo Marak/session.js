@@ -2,11 +2,6 @@ var http = require('http'),
     session = require('./lib/core').magicSession(), 
     eyes = require('eyes');
 
-
-
-
-
-
 // let's create a basic http server!
 http.createServer(function (request, response) {
 
