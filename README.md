@@ -15,7 +15,7 @@
 
 ### Usage
 
-#### Regular Sessions With httpServer
+#### Using session.js as a middle-ware
 
       var http = require('http'), 
           session = require('./lib/core').session;
@@ -41,7 +41,7 @@
       console.log('> hello world running on port 8080');
 
 
-#### Magic Monkey Punched Sessions (automatically patches httpServer)
+#### Magic Monkey Punched Middle-ware Sessions (automatically patches httpServer)
 
     var http = require('http'),
         session = require('./lib/core').magicSession(); // special magic, now all requests have sessions!
