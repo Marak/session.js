@@ -89,7 +89,8 @@ One of the best things about having a persistent session object per user, is hav
         // if the "name" parameter has been sent, lets log in as that user
         request.session.data.user = urlParams.name;
       }
-
+  
+      // request.session.data.user always defaults to "Guest"
       if(request.session.data.user == "Guest"){
         response.writeHead(200, {'Content-Type': 'text/plain'});
         response.write('Hello, you are the Guest user');
@@ -106,6 +107,7 @@ One of the best things about having a persistent session object per user, is hav
 
     /* server started */  
     console.log('> hello world running on port 8080');
+
     
 Once you have this running you can do the following:
 
