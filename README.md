@@ -13,6 +13,23 @@
   npm install sesh
 </pre>
 
+### Example request.session
+
+    {
+        "id": "m2ENokSCHY3",
+        "data": {
+            "history": [
+                "/"
+            ],
+            "user": "Guest"
+        },
+        "path": "/",
+        "persistent": true,
+        "lifetime": 604800,
+        "expiration": 1291446379596
+    }
+
+
 ### Usage
 
 #### Using session.js as a middle-ware
