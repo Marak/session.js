@@ -42,8 +42,7 @@
 #### Magic Monkey Punched Sessions (automatically patches httpServer)
 
     var http = require('http'),
-        session = require('./lib/core').magicSession(), 
-        eyes = require('eyes');
+        session = require('./lib/core').magicSession();
 
     // let's create a basic http server!
     http.createServer(function (request, response) {
