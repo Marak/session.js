@@ -40,14 +40,14 @@
       // let's create a basic http server!
       http.createServer(function (request, response) {
 
-        // before we process any part of the request, let's give use the session middle-ware!
+        // before we process any part of the request, let's use the session middle-ware!
         session(request, response, function(request, response){
 
           // now we can access request.session
 
           // after the session middleware has executed, let's finish processing the request
           response.writeHead(200, {'Content-Type': 'text/plain'});
-          response.write('hello, i know nodejitsu. \n' + 'the current session for this request looks like: \n' + JSON.stringify(request.session, 2, true));
+          response.write('request.session: \n' + JSON.stringify(request.session, 2, true));
           response.end();
     
         });
@@ -68,9 +68,9 @@
 
       // now we can access request.session
 
-      // after the session middleware has executed, let's finish processing the request
+      // let's finish processing the request
       response.writeHead(200, {'Content-Type': 'text/plain'});
-      response.write('hello, i know nodejitsu. \n' + 'the current session for this request looks like: \n' + JSON.stringify(request.session, 2, true));
+      response.write('request.session: \n' + JSON.stringify(request.session, 2, true));
       response.end();
 
     }).listen(8080);
